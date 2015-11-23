@@ -1,0 +1,22 @@
+<table class="table table-hover" ng-controller ="ListTransactionController">
+	<thead class="row">
+		<tr>
+			<th class="col-md-2 text-center">Id Transaction</th>
+			<th class="col-md-2 text-center">Id Account From</th>
+			<th class="col-md-2 text-center">Id Account To</th>			
+			<th class="col-md-2 text-center">Time</th>
+			<th class="col-md-2 text-center">Type</th>
+			<th class="col-md-2 text-center">Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="transaction in transactions">
+			<td class="text-center">{{transaction.idTransaction}}</td>
+			<td class="text-center">{{transaction.idAccountFrom}}</td>
+			<td class="text-center">{{transaction.idAccountTo}}</td>
+			<td class="text-center">{{transaction.time | date:'medium'}}</td>
+			<td class="text-center">{{transaction.type}}</td>
+			<td class="text-center">{{transaction.amount}}</td>
+		</tr>
+	</tbody>
+</table>

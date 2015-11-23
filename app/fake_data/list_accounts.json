@@ -1,0 +1,8 @@
+{
+	"accounts" : [
+	{"idAccount" : 1288323623006, "username" : "Ho Dac Hop", "password" : "123123", "balance" : 0},
+	{"idAccount" : 1420390800000, "username" : "Huynh Phi Thien Tai", "password" : "123123", "balance" : 0},
+	{"idAccount" : 1420477200000, "username" : "Vo Hong Van", "password" : "123123", "balance" : 0},
+	{"idAccount" : 1420563600000, "username" : "Tran Tien Dung", "password" : "123123", "balance" : 0},
+	{"idAccount" : 1420650000000, "username" : "Nguyen Van Tai", "password" : "123123", "balance" : 0}]
+}

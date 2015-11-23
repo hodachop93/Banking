@@ -1,0 +1,20 @@
+<table class="table table-hover" ng-controller ="ListAccountController">
+	<thead class="row">
+		<tr>
+			<th class="col-md-3 text-center">Id Account</th>
+			<th class="col-md-3 text-center">Username</th>
+			<th class="col-md-3 text-center">Password</th>			
+			<th class="col-md-3 text-center">Balance</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="account in accounts">
+			<td class="text-center">{{account.idAccount}}</td>
+			<td class="text-center">{{account.username}}</td>
+			<td class="text-center">{{account.password}}</td>
+			<td class="text-center">{{account.balance}}</td>
+			
+		</tr>
+	</tbody>
+</table>

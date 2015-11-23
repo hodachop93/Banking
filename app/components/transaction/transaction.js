@@ -1,6 +1,6 @@
-var withDraw = angular.module('withDraw', []);
+var transaction = angular.module('transaction', []);
 
-withDraw.controller('transactionCtrl', function($scope, $filter, transactionService) {
+transaction.controller('transactionCtrl', function($scope, $filter, transactionService) {
 	$scope.addNewTransaction = function(){
 		var newTransaction = {};
 		
@@ -16,7 +16,7 @@ withDraw.controller('transactionCtrl', function($scope, $filter, transactionServ
 	}
 });
 
-withDraw.controller('showTransactionHistoryCtrl', function($scope, transactionService){
+transaction.controller('showTransactionHistoryCtrl', function($scope, transactionService){
 	
 	var history = transactionService.transactionHistory;
 
@@ -31,7 +31,7 @@ withDraw.controller('showTransactionHistoryCtrl', function($scope, transactionSe
 	};	
 });
 
-withDraw.service('transactionService', function () {
+transaction.service('transactionService', function () {
 	this.transactionHistory = [
 	{	
 		id: 1,
@@ -65,3 +65,4 @@ withDraw.service('transactionService', function () {
 	}
 	];	
 });
+
