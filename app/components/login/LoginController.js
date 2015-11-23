@@ -1,6 +1,6 @@
 
 angular
-.module('bankingApp.login', [])
+.module('bankingApp.login', ['bankingApp.account'])
 .controller('LoginController', LoginController);
 
 LoginController.$inject = ['$scope','$location','listAccount'];
@@ -19,13 +19,16 @@ function LoginController($scope, $location, listAccount){
 			if (idAccount == accounts[i].idAccount){
 				if(password == accounts[i].password){
 					console.log("login thanh cong");
+					listAccount.currentAccount = accounts[i];
+					$location.path('/customer/' + listAccount.currentAccount.idAccount);
+					break;
 				}else{
 					continue;
 				}
 			}
 		}
 
-		$location.path('/home');
+		console.log("login that bai");
 	}
 }
 

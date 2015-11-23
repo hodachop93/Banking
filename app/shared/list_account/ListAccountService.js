@@ -3,6 +3,7 @@ angular
 
 .factory('listAccount', ['$http', '$q', function ($http, $q) {
 	var accounts = [];
+	var currentAccount = {};
 	var deferredObj = $q.defer(); 
 	
 	$http.get('app/fake_data/list_accounts.json')
@@ -21,8 +22,10 @@ angular
 			}
 			);
 	console.log(accounts);
+
 	return{
-		accounts : accounts
+		accounts : accounts,
+		currentAccount : currentAccount
 	}
 
 }]);

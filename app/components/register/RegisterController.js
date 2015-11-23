@@ -1,6 +1,6 @@
 
 angular
-.module('bankingApp.register', [])
+.module('bankingApp.register', ['bankingApp.account'])
 .controller('RegisterController', RegisterController);
 
 RegisterController.$inject = ['$scope','$location','listAccount'];

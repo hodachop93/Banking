@@ -15,5 +15,9 @@ function config($routeProvider){
 		templateUrl: 'app/components/login/LoginView.html',
 		controller: 'LoginController'
 	})
+	.when('/customer/:customerId', {
+		templateUrl: 'app/components/customer/CustomerView.html',
+		controller: 'CustomerController'
+	})
 }
 

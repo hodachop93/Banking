@@ -11,12 +11,12 @@ angular
 				response.data.transactions.forEach(function(transaction){
 					transactions.push(transaction);
 				})
-console.log(response);
+
 				deferredObj.resolve(transactions);
 			},
 			function(response){ //error callback
 				// called asynchronously if an error occurs or server returns response with an error status.
-console.log(response);
+
 			}
 			);
 
