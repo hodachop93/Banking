@@ -1,0 +1,29 @@
+<div class="container" ng-init="loadCurrentAccount()">
+
+	<div class="row">
+		<div class="col-sm-3">
+			Your current id: 
+		</div>
+		<div class="col-sm-9"><label for="idAccount">
+			{{currentAccount.idAccount}}
+		</label></div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3">
+			Your name: 
+		</div>
+		<div class="col-sm-9"><label for="username">
+			{{currentAccount.username}}
+		</label></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-3">
+			Your balance: 
+		</div>
+		<div class="col-sm-9"><label for="balance">
+			{{currentAccount.balance | currency : "$" : 0}}
+		</label></div>
+	</div>
+</div>

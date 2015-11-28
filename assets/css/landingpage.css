@@ -1,0 +1,57 @@
+.navbar-default{
+	border-color: transparent;
+	background-color: #222;
+}
+
+.navbar-header .navbar-brand{
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+	color: #993399;
+}
+
+.navbar-header .navbar-toggle{
+	background-color: #993399;
+	border-color: #993399;	
+}
+
+.navbar-default .navbar-collapse{
+	border-color: rgba(255,255,255,0.02);
+}
+
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover{
+	background-color: #993399;
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover{
+	color: #993399;
+	background-color: transparent;
+}
+
+.navbar-default .nav li a{
+	text-transform: uppercase;
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus{
+	color: #fff;
+	background-color: #993366;
+}
+
+.navbar-default .navbar-nav>.active>a{
+	color: #fff;
+	background-color: #993399;
+}
+
+header{
+	background-image: url(assets/imgs/header.jpg);
+	background-repeat: none;
+	background-position: center center
+	text-align: center;
+	color: #000;	
+}

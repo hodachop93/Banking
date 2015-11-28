@@ -1,0 +1,33 @@
+<div  ng-init="loadTransactionHistory()">
+	<table class="table table-hover" ng-if="checkCurrentAccountExist()">
+		<thead class="row">
+			<tr>
+				<th class="col-sm-2 text-center">Index</th>
+				<th class="col-sm-2 text-center">Id Account From</th>
+				<th class="col-sm-2 text-center">Id Account To</th>			
+				<th class="col-sm-2 text-center">Time</th>
+				<th class="col-sm-2 text-center">Type</th>
+				<th class="col-sm-2 text-center">Amount</th>
+
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="transaction in transactions | filter : filterTransaction | orderBy : '-time'">
+				<td class="text-center">{{$index+1}}</td>
+				<td class="text-center">{{transaction.idAccountFrom}}</td>
+				<td class="text-center">{{transaction.idAccountTo}}</td>
+				<td class="text-center">{{transaction.time | date:'dd/MM/yyyy HH:mm a'}}</td>
+				<td class="text-center">{{transaction.type}}</td>
+				<td class="text-center">{{transaction.amount | currency : "$" : 0}}</td>
+
+
+			</tr>
+		</tbody>
+	</table>
+
+	<h1 class="warning" ng-if="!checkCurrentAccountExist()">
+		<i class="fa fa-exclamation-triangle"></i>
+		Please login to continue using the service !!!
+	</h1>
+</div>

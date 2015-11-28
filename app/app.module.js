@@ -1,5 +1,6 @@
 angular.module('bankingApp', ['bankingApp.transaction', 'bankingApp.account',
-	'ngRoute', 'bankingApp.login', 'bankingApp.register'])
+	'ngRoute', 'bankingApp.login', 'bankingApp.register', 'bankingApp.customer',
+	'ngMessages'])
 
 .config(config);
 
@@ -15,9 +16,19 @@ function config($routeProvider){
 		templateUrl: 'app/components/login/LoginView.html',
 		controller: 'LoginController'
 	})
-	.when('/customer/:customerId', {
-		templateUrl: 'app/components/customer/CustomerView.html',
+	.when('/customer/dashboard', {
+		templateUrl: 'app/components/customer/CustomerDashboardView.html',
 		controller: 'CustomerController'
 	})
+	.when('/with-depo', {
+		templateUrl: 'app/components/customer/CustomerWithDepoView.html',
+		controller: 'CustomerController'
+	})
+	.when('/transfer', {
+		templateUrl: 'app/components/customer/CustomerTransferView.html',
+		controller: 'CustomerController'
+	})	
+	.otherwise({ redirectTo: '/login' })	
 }
+
 

@@ -1,7 +1,8 @@
 
 angular
 .module('bankingApp.register', ['bankingApp.account'])
-.controller('RegisterController', RegisterController);
+.controller('RegisterController', RegisterController)
+.directive('compareTo', compareTo);
 
 RegisterController.$inject = ['$scope','$location','listAccount'];
 function RegisterController($scope, $location, listAccount){
@@ -18,6 +19,25 @@ function RegisterController($scope, $location, listAccount){
 		listAccount.accounts.push(account);
 
 		$location.path('/home');
+	}
+}
+
+function compareTo(){
+	return {
+		restrict: 'A',	
+		require: "ngModel",
+		scope: {
+			otherModelValue : "=compareTo"
+		},
+		link: function(scope, element, attributes, ngModel){
+			ngModel.$validators.compareTo = function(modelValue){
+				return modelValue == scope.otherModelValue;
+			}
+
+			scope.$watch("otherModelValue", function(){
+				ngModel.$validate();
+			})
+		}
 	}
 }
 

@@ -1,20 +1,37 @@
-<div  class="col-md-4 col-sm-4 col-xs-offset-4 col-xs-offset-4" >	
+<div  class="col-sm-4 col-sm-offset-4" >	
 
 	<h2>Register</h2>
-	<div ng-controller="RegisterController">
-		<div class="form-group">
-			<label for="username">Register</label>
-			<input type="text" class="form-control" ng-model="username">
-			<span>Username is required</span>
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<form name="RegisterForm" novalidate ng-submit="register()">
+		<div class="form-group" ng-class="{'has-error' : RegisterForm.username.$dirty && RegisterForm.username.$invalid}">
+			<label>Your full name</label>
+			<input type="text" name="name" class="form-control" ng-model="username" required>
+			<div ng-messages="RegisterForm.name.$error" class="error">
+				<div ng-message="required">Your name is required</div>
+			</div>
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>
-			<input type="text" class="form-control" ng-model="password">
-			<span>Password is required</span>
+			<input type="text" class="form-control" ng-model="password" name="password" required>
+
+			<div ng-messages="RegisterForm.password.$error" class="error">
+				<div ng-message="required">Password is required</div>
+			</div>
 		</div>
-		<div>
-			<a class="btn btn-primary" ng-click="register()">Register</a>
-			<a href="#home" class="btn btn-link">Cancel</a>
+		<div class="form-group">
+			<label>Confirm Password</label>
+			<input type="password" class="form-control" name="confirmPassword" required ng-model="confirmPassword" compare-to="password">
+
+			<div ng-messages="RegisterForm.confirmPassword.$error" class="error">
+				<div ng-message="required">Confirm password is required</div>
+				<div ng-message="compareTo">Confirm paswword must match the password</div>
+			</div>
+
+
 		</div>
+	<div>
+		<a class="btn btn-primary" ng-click="register()">Register</a>
+		<a href="#home" class="btn btn-link">Cancel</a>
 	</div>
+</form>
 </div>

@@ -1,5 +1,5 @@
 angular
-.module('bankingApp.transaction')
+.module('bankingApp.transaction', [])
 
 .factory('listTransaction', ['$http', '$q', function ($http, $q) {
 	var transactions = [];

@@ -6,12 +6,11 @@ angular
 LoginController.$inject = ['$scope','$location','listAccount'];
 function LoginController($scope, $location, listAccount){
 	$scope.login = login;
+	$scope.getIdAccountError = getIdAccountError;
+	/*$scope.isLoggedIn = false;*/
 	
-	var accounts = listAccount.accounts;
-
-
-
 	function login(){
+		var accounts = listAccount.accounts;
 		var idAccount = $scope.idAccount;
 		var password = $scope.password;
 
@@ -20,15 +19,29 @@ function LoginController($scope, $location, listAccount){
 				if(password == accounts[i].password){
 					console.log("login thanh cong");
 					listAccount.currentAccount = accounts[i];
-					$location.path('/customer/' + listAccount.currentAccount.idAccount);
-					break;
+					console.log(listAccount.currentAccount.idAccount);
+					
+					$location.path('/customer/dashboard');
+					return;
 				}else{
 					continue;
 				}
 			}
 		}
+		$scope.error = "Your id account or password is incorrect";
+		console.log("login ko thanh cong");
+	}
 
-		console.log("login that bai");
+	function getIdAccountError(error){
+		if(angular.isDefined(error)){
+			if(error.required){
+				return "Please enter a value";
+			}else if(error.pattern){
+				return "Your id only contains numbers";
+			}else if(error.minlength || error.maxlength){
+				return "Please enter a valid id with 13 characters";
+			}
+		}
 	}
 }
 

@@ -1,0 +1,41 @@
+<div ng-init="loadTransactionHistory()">
+	<div class="col-sm-8 col-sm-offset-2" ng-if="checkCurrentAccountExist()">
+		<h2 class="text-center">Transfer money</h2>
+
+		<ng-include src="'app/components/customer/CustomerInfoView.html'"></ng-include>
+		<br>
+
+		<form class="well" novalidate name="TransferForm" role="form">
+			<div class="form-group">
+				<label for="amount">Amount</label>
+				<input type="number" min="1" class="form-control" placeholder="Enter the amount of money you want to transfer" ng-model="amount" required max="{{currentAccount.balance}}">
+				<div ng-messages="TransferForm.amount.$error" class="error">
+					<div ng-message="required">Please enter a value</div>
+					<div ng-message="min">The money cannot be smaller than 0</div>
+					<div ng-message="max">The money cannot be larger than your balance</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="idAccount">Id account you want to send money</label>
+				<input type="text" class="form-control" placeholder="Enter the id account of the person you want to transfer" ng-model="idAccountTo" required ng-init="idAccountTo='1420390800000'" max="13">
+
+				<span class="error">Please, enter the id account of the person you want to transfer</span>
+			</div>
+
+			<div class="form-group">
+				<button type="button" class="btn btn-primary" ng-disabled="TransferForm.$invalid" ng-click="transfer(idAccountTo, amount)">
+					Transfer
+				</button>
+			</div>
+		</form>
+
+
+
+	</div>
+
+	<h1 class="warning"ng-if="!checkCurrentAccountExist()">
+		<i class="fa fa-exclamation-triangle"></i>
+		Please login to continue using the service !!!
+	</h1>
+</div>

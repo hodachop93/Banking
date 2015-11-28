@@ -1,9 +1,9 @@
 angular
-.module('bankingApp.account')
+.module('bankingApp.account', [])
 
 .factory('listAccount', ['$http', '$q', function ($http, $q) {
 	var accounts = [];
-	var currentAccount = {};
+	var currentAccount = null;
 	var deferredObj = $q.defer(); 
 	
 	$http.get('app/fake_data/list_accounts.json')
@@ -13,7 +13,7 @@ angular
 				response.data.accounts.forEach(function(account){
 					accounts.push(account);
 				})
-				console.log(response);
+				/*console.log(response);*/
 				deferredObj.resolve(accounts);
 			},
 			function(response){ //error callback
@@ -21,11 +21,21 @@ angular
 				console.log(response);
 			}
 			);
-	console.log(accounts);
+	/*console.log(accounts);*/
+	console.log("Dang o trong listAccount");
+
+	function checkCurrentAccountExist(){
+		if (this.currentAccount == null){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	return{
 		accounts : accounts,
-		currentAccount : currentAccount
+		currentAccount : currentAccount,
+		checkCurrentAccountExist : checkCurrentAccountExist
 	}
 
 }]);
