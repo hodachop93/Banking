@@ -4,7 +4,8 @@ angular
 .factory('listAccount', ['$http', '$q', function ($http, $q) {
 	var accounts = [];
 	var currentAccount = null;
-	var deferredObj = $q.defer(); 
+	var deferredObj = $q.defer();
+	var isLoggedIn = {status : false}; 
 	
 	$http.get('app/fake_data/list_accounts.json')
 	.then(
@@ -35,7 +36,8 @@ angular
 	return{
 		accounts : accounts,
 		currentAccount : currentAccount,
-		checkCurrentAccountExist : checkCurrentAccountExist
+		checkCurrentAccountExist : checkCurrentAccountExist,
+		isLoggedIn : isLoggedIn
 	}
 
 }]);

@@ -1,3 +1,6 @@
+html, body{
+	height: 100%;
+}
 .navbar-default{
 	border-color: transparent;
 	background-color: #222;
@@ -49,9 +52,61 @@
 }
 
 header{
-	background-image: url(assets/imgs/header.jpg);
-	background-repeat: none;
-	background-position: center center
+	height: 100%;
+	background-image: url(../imgs/header.jpg);
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+
+header .intro-text {
+	padding-top: 100px;
+	padding-bottom: 50px;
 	text-align: center;
-	color: #000;	
+	color: #fff;
+}
+
+header .intro-text .intro-lead-in {
+	font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial,
+		sans-serif;
+	font-style: italic;
+	font-size: 22px;
+	line-height: 22px;
+	margin-bottom: 25px;
+
+}
+
+header .intro-text .intro-heading {
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 50px;
+	line-height: 50px;
+	margin-bottom: 25px
+}
+
+@media ( min-width :768px) {
+	header .intro-text {
+		padding-top: 250px;
+		padding-bottom: 200px
+	}
+	header .intro-text .intro-lead-in {
+		font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial,
+			sans-serif;
+		font-style: italic;
+		font-size: 40px;
+		line-height: 40px;
+		margin-bottom: 25px
+	}
+	header .intro-text .intro-heading {
+		font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: 75px;
+		line-height: 75px;
+		margin-bottom: 50px
+	}
 }

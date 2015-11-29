@@ -1,5 +1,5 @@
 <div ng-init="loadTransactionHistory()" >
-	<div  class="col-sm-8 col-sm-offset-2" ng-if="checkCurrentAccountExist()">	
+	<div  class="col-sm-6 col-sm-offset-3" ng-if="checkCurrentAccountExist()">	
 
 		<h2 class="text-center">Withdraw / Deposit</h2>
 
@@ -9,12 +9,13 @@
 		<form class="well" novalidate name="depositForm">
 			<div class="form-group">
 				<label for="username">Amount</label>
-				<input id="amount" name="amount" class="form-control" type="number" min="1" placeholder="Enter the amount of money you want to transact" required ng-model="amount" max="{{currentAccount.balance}}" >
+				<input id="amount" name="amount" class="form-control" type="number" min="1" placeholder="Enter the amount of money you want to transact" required ng-model="amount" max="{{currentAccount.balance}}" ng-pattern="/^[0-9]+$/" >
 				
 				<div ng-messages="depositForm.amount.$error" class="error">
 					<div ng-message="required">Please enter a value</div>
-					<div ng-message="min">The money cannot be smaller than 0</div>
+					<div ng-message="min">The money cannot be smaller than 1</div>
 					<div ng-message="max">The money cannot be larger than your balance</div>
+					<div ng-message="pattern">Money cannot contain cents</div>
 				</div>
 			</div>
 
@@ -33,7 +34,7 @@
 
 	<h1 class="warning"ng-if="!checkCurrentAccountExist()">
 		<i class="fa fa-exclamation-triangle"></i>
-		Please login to continue using the service !!!
+		Please login to use this service !!!
 	</h1>
 
 	</div >

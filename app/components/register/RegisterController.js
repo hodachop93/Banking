@@ -13,6 +13,7 @@ function RegisterController($scope, $location, listAccount){
 		var now = Date.now();
 		account.idAccount = now;
 		account.username = $scope.username;
+		account.fullname = $scope.fullname;
 		account.password = $scope.password;
 		account.balance = 0;
 

@@ -1,41 +1,61 @@
 <div ng-init="loadTransactionHistory()">
-	<div class="col-sm-8 col-sm-offset-2" ng-if="checkCurrentAccountExist()">
+	<div class="col-sm-6 col-sm-offset-3" ng-if="checkCurrentAccountExist()">
 		<h2 class="text-center">Transfer money</h2>
 
 		<ng-include src="'app/components/customer/CustomerInfoView.html'"></ng-include>
 		<br>
 
-		<form class="well" novalidate name="TransferForm" role="form">
+		<form class="well" novalidate name="TransferForm">
 			<div class="form-group">
-				<label for="amount">Amount</label>
-				<input type="number" min="1" class="form-control" placeholder="Enter the amount of money you want to transfer" ng-model="amount" required max="{{currentAccount.balance}}">
+				<label>Amount</label>
+				<input type="number" min="1" class="form-control" placeholder="Enter the amount of money you want to transfer" ng-model="amount" required max="{{currentAccount.balance}}" name="amount" ng-pattern="/^[0-9]+$/">
+
 				<div ng-messages="TransferForm.amount.$error" class="error">
 					<div ng-message="required">Please enter a value</div>
-					<div ng-message="min">The money cannot be smaller than 0</div>
+					<div ng-message="min">The money cannot be smaller than 1</div>
 					<div ng-message="max">The money cannot be larger than your balance</div>
+					<div ng-message="pattern">Money cannot contain cents</div>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="idAccount">Id account you want to send money</label>
-				<input type="text" class="form-control" placeholder="Enter the id account of the person you want to transfer" ng-model="idAccountTo" required ng-init="idAccountTo='1420390800000'" max="13">
-
-				<span class="error">Please, enter the id account of the person you want to transfer</span>
+				<label>The username you want to send money</label>
+				<input type="text" name="usernameTo" class="form-control" placeholder="Enter the username of the person you want to transfer" ng-model="usernameTo" required>
+				
+				<div ng-messages="TransferForm.usernameTo.$error" class="error">
+					<div ng-message="required">Please enter a username</div>
+				</div>
+				
 			</div>
 
 			<div class="form-group">
-				<button type="button" class="btn btn-primary" ng-disabled="TransferForm.$invalid" ng-click="transfer(idAccountTo, amount)">
+				<button type="button" class="btn btn-primary" ng-disabled="TransferForm.$invalid" ng-click="transfer(usernameTo, amount)">
 					Transfer
 				</button>
 			</div>
 		</form>
 
-
+		<table class="table table table-hover">
+			<thread class="row">
+				<tr>
+					<th>Id Account</th>
+					<th>Username</th>
+					<th>Fullname</th>
+				</tr>
+			</thread>
+			<tbody ng-repeat="account in accounts | filter: usernameTo">
+				<tr>
+					<td>{{account.idAccount}}</td>
+					<td>{{account.username}}</td>
+					<td>{{account.fullname}}</td>
+				</tr>
+			</tbody>
+		</table>
 
 	</div>
 
 	<h1 class="warning"ng-if="!checkCurrentAccountExist()">
 		<i class="fa fa-exclamation-triangle"></i>
-		Please login to continue using the service !!!
+		Please login to use this service !!!
 	</h1>
 </div>

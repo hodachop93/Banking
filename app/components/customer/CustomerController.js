@@ -2,10 +2,11 @@ angular
 .module('bankingApp.customer', ['bankingApp.transaction'])
 .controller('CustomerController', CustomerController);
 
-CustomerController.$inject = ['$scope','$routeParams', '$location',
+CustomerController.$inject = ['$scope', '$location',
 'listTransaction', 'listAccount'];
 
-function CustomerController($scope,$routeParams, $location, 
+
+function CustomerController($scope, $location, 
 	listTransaction, listAccount){
 	$scope.loadTransactionHistory = loadTransactionHistory;
 	$scope.withDraw = withDraw;
@@ -14,9 +15,13 @@ function CustomerController($scope,$routeParams, $location,
 	$scope.loadCurrentAccount = loadCurrentAccount;
 	$scope.checkCurrentAccountExist = listAccount.checkCurrentAccountExist;
 	$scope.transfer = transfer;
+	$scope.deleteTransaction = deleteTransaction;
+	
+
 
 	function loadTransactionHistory(){
 		loadCurrentAccount();
+		$scope.accounts = listAccount.accounts;
 		$scope.transactions = listTransaction.transactions;
 		
 
@@ -27,29 +32,37 @@ function CustomerController($scope,$routeParams, $location,
 	}
 
 	function filterTransaction(transaction){
-		if($scope.currentAccount.idAccount != null){
-			return transaction.idAccountFrom === $scope.currentAccount.idAccount ||
-				transaction.idAccountTo === $scope.currentAccount.idAccount;
+		if($scope.currentAccount.username != null){
+			return transaction.From === $scope.currentAccount.username ||
+				transaction.To === $scope.currentAccount.username;
 		}
 		
 	}
 
+	function createTransaction(idTransaction, from, to, time, type, amount){
+		var newTransaction = {};
+		newTransaction.idTransaction = idTransaction;
+		newTransaction.From = from;
+		newTransaction.To = to;
+		newTransaction.time = time;
+		newTransaction.type = type;
+		newTransaction.amount = amount;
+
+		return newTransaction;
+	}
+
 	function withDraw(amount){
 
-		if(amount >= $scope.currentAccount.balance){
-			alert("The amount cannot be more than your balance!!!");
-			return;
-		}
-		
 		$scope.currentAccount.balance -= amount;
 
-		var newTransaction = {};
-		newTransaction.idTransaction = Date.now();
-		newTransaction.idAccountFrom = $scope.currentAccount.idAccount;
-		newTransaction.idAccountTo = $scope.currentAccount.idAccount;
-		newTransaction.time = Date.now();
-		newTransaction.type = "withdraw";
-		newTransaction.amount = amount;
+		var now = Date.now();
+		var from = $scope.currentAccount.username;
+		var to = $scope.currentAccount.username;
+		var type = "withdraw";
+
+
+		var newTransaction = createTransaction(now, from, to, now, type, amount);
+
 		
 		$scope.transactions.push(newTransaction);
 
@@ -59,39 +72,26 @@ function CustomerController($scope,$routeParams, $location,
 
 	function deposit(amount){
 		
-		if(amount >= $scope.currentAccount.balance){
-			alert("The amount cannot be more than your balance!!!");
-			return;
-		}
-		
 		$scope.currentAccount.balance += amount;
 
-		var newTransaction = {};
-		newTransaction.idTransaction = Date.now();
-		newTransaction.idAccountFrom = $scope.currentAccount.idAccount;
-		newTransaction.idAccountTo = $scope.currentAccount.idAccount;
-		newTransaction.time = Date.now();
-		newTransaction.type = "deposit";
-		newTransaction.amount = amount;
+		var now = Date.now();
+		var from = $scope.currentAccount.username;
+		var to = $scope.currentAccount.username;
+		var type = "deposit";
+
+		var newTransaction = createTransaction(now, from, to, now, type, amount);
 
 		$scope.transactions.push(newTransaction);
 	}
 
-	function transfer(idAccountTo, amount){
-		console.log(amount);
-
-		if(amount >= $scope.currentAccount.balance){
-			alert("The amount cannot be more than your balance!!!");
-			return;
-		}
+	function transfer(usernameTo, amount){
 
 		var accounts = listAccount.accounts;
 		var isAccountToExist = false;
-		var accountTo = null;
 		
 
 		for (var i=0; i<accounts.length; i++){
-			if (idAccountTo == accounts[i].idAccount){
+			if (usernameTo == accounts[i].username){
 				accountTo = accounts[i];
 				isAccountToExist = true;
 				break;
@@ -99,7 +99,7 @@ function CustomerController($scope,$routeParams, $location,
 		}
 
 		if(!isAccountToExist){
-			alert("Id account you want to transfer is not exist");
+			alert("The account you want to transfer is not exist");
 			return;
 		}else{
 			startTransfering(accountTo, amount);
@@ -110,18 +110,32 @@ function CustomerController($scope,$routeParams, $location,
 		$scope.currentAccount.balance -= amount;
 		accountTo.balance += amount;
 
-		var newTransaction = {};
-		newTransaction.idTransaction = Date.now();
-		newTransaction.idAccountFrom = $scope.currentAccount.idAccount;
-		newTransaction.idAccountTo = accountTo.idAccount;
-		newTransaction.time = Date.now();
-		newTransaction.type = "transfer";
-		newTransaction.amount = amount;
+		var now = Date.now();
+		var from = $scope.currentAccount.username;
+		var to = accountTo.username;
+		var type = "transfer";
 
+		var newTransaction = createTransaction(now, from, to, now, type, amount);
 		$scope.transactions.push(newTransaction);
 		
 	}
 
+	function deleteTransaction(idTransaction){
+		var index = getIndexToRemove(idTransaction);
+
+		var transactions = listTransaction.transactions;
+		transactions.splice(index, 1);
+	}
+
+	function getIndexToRemove(idTransaction){
+		var transactions = listTransaction.transactions;
+
+		for (var i=0; i<transactions.length; i++){
+			if (idTransaction === transactions[i].idTransaction){
+				return i;
+			}
+		}
+	}
 }
 
 

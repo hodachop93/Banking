@@ -2,24 +2,27 @@
 
 	<h2>Login</h2>
 	<div ng-show="error" class="alert alert-danger">{{error}}</div>
-	<form name="LoginForm" novalidate ng-submit="login()">
-		<div class="form-group" ng-class="{'has-error' : LoginForm.id.$dirty && LoginForm.id.$invalid}">
-			<label>Id Account</label>
-			<input type="text" name="id" class="form-control" ng-model="idAccount" ng-init="idAccount='1021102000000'" ng-minlength="13" ng-maxlength="13" required ng-pattern="/^[0-9]+$/">
 
-			<div ng-messages="LoginForm.id.$error" class="error">
+	<form name="LoginForm" novalidate ng-submit="login()" role="form">
+		
+		<div class="form-group" ng-class="{'has-error' : LoginForm.username.$dirty && LoginForm.username.$error.required}">
+			<label>Username</label>
+			<input type="text" name="username" class="form-control" ng-model="username" required>
+
+			<div ng-messages="LoginForm.username.$error" class="error">
 				<div ng-message="required">Please enter a value</div>
-				<div ng-message="pattern">Your id only contains numbers</div>
-				<div ng-message="minlength">Please enter a valid id with 13 characters</div>
-				<div ng-message="maxlength">Please enter a valid id with 13 characters</div>
 			</div>
+		</div>
 
+		<div class="form-group" ng-class="{'has-error' : LoginForm.password.$dirty && LoginForm.password.$error.required}">
+			<label>Password</label>
+			<input type="password" name="password" class="form-control" ng-model="password" required>
+
+			<div ng-messages="LoginForm.username.$error" class="error">
+				<div ng-message="required">Please enter a value</div>
+			</div>
 		</div>
-		<div class="form-group" ng-class="{'has-error': LoginForm.password.$dirty && LoginForm.password.$invalid}">
-			<label for="password">Password</label>
-			<input type="password" name="password" class="form-control" ng-model="password" ng-init="password='123123'" required>
-			<span class="error" ng-show="LoginForm.password.$invalid && LoginForm.password.$dirty">Password is required</span>
-		</div>
+
 		<div>
 			<input type="submit" class="btn btn-primary" value="Login" ng-disabled="LoginForm.$invalid">
 			<a href="#home" class="btn btn-link">Cancel</a>

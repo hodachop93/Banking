@@ -1,7 +1,7 @@
 {
 	"transactions" : [
-	{"idTransaction" : 1021102000000, "idAccountFrom" : 1021102000000, "idAccountTo" : 1420390800000, "time" : 1420390800000, "type" : "transfer", "amount" : 200},
-	{"idTransaction" : 1288323623007, "idAccountFrom" : 1021102000000, "idAccountTo" : 1420390800000, "time" : 1420390800000, "type" : "transfer", "amount" : 200},
-	{"idTransaction" : 1288323623008, "idAccountFrom" : 1021102000000, "idAccountTo" : 1420390800000, "time" : 1420390800000, "type" : "transfer", "amount" : 200},
-	{"idTransaction" : 1288323623009, "idAccountFrom" : 1021102000000, "idAccountTo" : 1288323623006, "time" : 1420390800000, "type" : "transfer", "amount" : 200}]
+	{"idTransaction" : 1288323623006, "From" : "hodachop", "To" : "taihpt", "time" : 1420390800000, "type" : "transfer", "amount" : 200},
+	{"idTransaction" : 1288323623007, "From" : "hodachop", "To" : "vohongvan", "time" : 1420390800000, "type" : "transfer", "amount" : 200},
+	{"idTransaction" : 1288323623008, "From" : "hodachop", "To" : "ttdung", "time" : 1420390800000, "type" : "transfer", "amount" : 200},
+	{"idTransaction" : 1288323623009, "From" : "hodachop", "To" : "nvtai", "time" : 1420390800000, "type" : "transfer", "amount" : 200}]
 }

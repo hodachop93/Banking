@@ -6,21 +6,35 @@ angular
 LoginController.$inject = ['$scope','$location','listAccount'];
 function LoginController($scope, $location, listAccount){
 	$scope.login = login;
-	$scope.getIdAccountError = getIdAccountError;
-	/*$scope.isLoggedIn = false;*/
+	$scope.checkLogin = checkLogin;
+	$scope.currentAccount = null;
+	$scope.logout = logout;
+
+	function checkLogin(){
+		$scope.currentAccount = listAccount.currentAccount;
+		return listAccount.isLoggedIn.status;
+	}
+
+	function logout(){
+		console.log("logout");
+		listAccount.currentAccount = null;
+		listAccount.isLoggedIn.status = false;
+
+		$location.path('/login');
+	}
 	
 	function login(){
 		var accounts = listAccount.accounts;
-		var idAccount = $scope.idAccount;
+		var username = $scope.username;
 		var password = $scope.password;
 
 		for (var i=0; i<accounts.length; i++){
-			if (idAccount == accounts[i].idAccount){
+			if (username == accounts[i].username){
 				if(password == accounts[i].password){
-					console.log("login thanh cong");
 					listAccount.currentAccount = accounts[i];
-					console.log(listAccount.currentAccount.idAccount);
-					
+					listAccount.isLoggedIn.status = true;
+					console.log("login thanh cong");
+					console.log(listAccount.accounts);
 					$location.path('/customer/dashboard');
 					return;
 				}else{
@@ -28,20 +42,10 @@ function LoginController($scope, $location, listAccount){
 				}
 			}
 		}
-		$scope.error = "Your id account or password is incorrect";
+		$scope.error = "Your username or password is incorrect";
 		console.log("login ko thanh cong");
 	}
 
-	function getIdAccountError(error){
-		if(angular.isDefined(error)){
-			if(error.required){
-				return "Please enter a value";
-			}else if(error.pattern){
-				return "Your id only contains numbers";
-			}else if(error.minlength || error.maxlength){
-				return "Please enter a valid id with 13 characters";
-			}
-		}
-	}
+
 }
 
