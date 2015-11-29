@@ -34,24 +34,12 @@
 				</button>
 			</div>
 		</form>
-
-		<table class="table table table-hover">
-			<thread class="row">
-				<tr>
-					<th>Id Account</th>
-					<th>Username</th>
-					<th>Fullname</th>
-				</tr>
-			</thread>
-			<tbody ng-repeat="account in accounts | filter: usernameTo">
-				<tr>
-					<td>{{account.idAccount}}</td>
-					<td>{{account.username}}</td>
-					<td>{{account.fullname}}</td>
-				</tr>
-			</tbody>
-		</table>
-
+		
+		<div class="alert alert-success notification">
+			<span class="glyphicon glyphicon-ok"></span>
+			<strong>Success!</strong> Your transaction has been successfully
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		</div>
 	</div>
 
 	<h1 class="warning"ng-if="!checkCurrentAccountExist()">

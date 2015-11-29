@@ -65,9 +65,7 @@ function CustomerController($scope, $location,
 
 		
 		$scope.transactions.push(newTransaction);
-
-		console.log("balance trong scope: " + $scope.currentAccount.balance);
-		console.log("balance trong service: " + listAccount.currentAccount.balance);
+		showNotification();
 	}
 
 	function deposit(amount){
@@ -82,6 +80,7 @@ function CustomerController($scope, $location,
 		var newTransaction = createTransaction(now, from, to, now, type, amount);
 
 		$scope.transactions.push(newTransaction);
+		showNotification();
 	}
 
 	function transfer(usernameTo, amount){
@@ -118,6 +117,8 @@ function CustomerController($scope, $location,
 		var newTransaction = createTransaction(now, from, to, now, type, amount);
 		$scope.transactions.push(newTransaction);
 		
+		showNotification();
+		
 	}
 
 	function deleteTransaction(idTransaction){
@@ -135,6 +136,11 @@ function CustomerController($scope, $location,
 				return i;
 			}
 		}
+	}
+
+	function showNotification(){
+		$('.notification').fadeIn();
+		$('.notification').fadeOut(1000);
 	}
 }
 
