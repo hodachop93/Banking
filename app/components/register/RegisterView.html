@@ -1,13 +1,17 @@
 <div  class="col-sm-4 col-sm-offset-4" >	
-
+	
 	<h2>Register</h2>
 	<div ng-show="error" class="alert alert-danger">{{error}}</div>
-	<form name="RegisterForm" novalidate ng-submit="register()">
-		<div class="form-group" ng-class="{'has-error' : RegisterForm.username.$dirty && RegisterForm.username.$invalid}">
+	<form name="RegisterForm" novalidate ng-submit="register(username)">
+		<div class="form-group has-feedback" ng-class="{'has-error' : RegisterForm.username.$dirty && RegisterForm.username.$invalid}">
 			<label>Your username</label>
-			<input type="text" name="username" class="form-control" ng-model="username" required>
-			<div ng-messages="RegisterForm.name.$error" class="error">
+			<input type="text" name="username" class="form-control" ng-model="username" required username-available ng-model-options="{ updateOn: 'blur' }">
+
+			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate form-control-feedback text-danger" ng-if="RegisterForm.username.$pending.usernameExists"></span>
+
+			<div ng-messages="RegisterForm.username.$error" class="error">
 				<div ng-message="required">Your username is required</div>
+				<div ng-message="usernameExists">Username exists already</div>
 			</div>
 		</div>
 
@@ -40,9 +44,9 @@
 
 
 		</div>
-	<div>
-		<a class="btn btn-primary" ng-click="register()">Register</a>
-		<a href="#home" class="btn btn-link">Cancel</a>
-	</div>
-</form>
+		<div>
+			<a class="btn btn-primary" ng-click="register()">Register</a>
+			<a href="#home" class="btn btn-link">Cancel</a>
+		</div>
+	</form>
 </div>

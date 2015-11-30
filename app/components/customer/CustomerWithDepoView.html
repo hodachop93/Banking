@@ -9,12 +9,11 @@
 		<form class="well" novalidate name="depositForm">
 			<div class="form-group">
 				<label for="username">Amount</label>
-				<input id="amount" name="amount" class="form-control" type="number" min="1" placeholder="Enter the amount of money you want to transact" required ng-model="amount" max="{{currentAccount.balance}}" ng-pattern="/^[0-9]+$/" >
+				<input id="amount" name="amount" class="form-control" type="number" min="1" placeholder="Enter the amount of money you want to transact" required ng-model="amount" ng-pattern="/^[0-9]+$/" >
 				
 				<div ng-messages="depositForm.amount.$error" class="error">
 					<div ng-message="required">Please enter a value</div>
 					<div ng-message="min">The money cannot be smaller than 1</div>
-					<div ng-message="max">The money cannot be larger than your balance</div>
 					<div ng-message="pattern">Money cannot contain cents</div>
 				</div>
 			</div>
@@ -34,7 +33,14 @@
 		<div class="alert alert-success notification">
 			<span class="glyphicon glyphicon-ok"></span>
 			<strong>Success!</strong> Your transaction has been successfully
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		</div>
+
+		<div class="alert alert-danger" id="error-balance">
+			<span class="glyphicon glyphicon-remove"></span>
+			<a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>Danger!</strong> You cannot withdraw the amount of money more than your balance
+			
 		</div>
 	</div>
 

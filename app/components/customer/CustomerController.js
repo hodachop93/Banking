@@ -34,7 +34,7 @@ function CustomerController($scope, $location,
 	function filterTransaction(transaction){
 		if($scope.currentAccount.username != null){
 			return transaction.From === $scope.currentAccount.username ||
-				transaction.To === $scope.currentAccount.username;
+			transaction.To === $scope.currentAccount.username;
 		}
 		
 	}
@@ -52,20 +52,23 @@ function CustomerController($scope, $location,
 	}
 
 	function withDraw(amount){
+		if($scope.currentAccount.balance >= amount){
+			$scope.currentAccount.balance -= amount;
 
-		$scope.currentAccount.balance -= amount;
-
-		var now = Date.now();
-		var from = $scope.currentAccount.username;
-		var to = $scope.currentAccount.username;
-		var type = "withdraw";
+			var now = Date.now();
+			var from = $scope.currentAccount.username;
+			var to = $scope.currentAccount.username;
+			var type = "withdraw";
 
 
-		var newTransaction = createTransaction(now, from, to, now, type, amount);
+			var newTransaction = createTransaction(now, from, to, now, type, amount);
 
-		
-		$scope.transactions.push(newTransaction);
-		showNotification();
+
+			$scope.transactions.push(newTransaction);
+			showNotification();
+		}else{
+			showErrorBalance();
+		}
 	}
 
 	function deposit(amount){
@@ -141,6 +144,11 @@ function CustomerController($scope, $location,
 	function showNotification(){
 		$('.notification').fadeIn();
 		$('.notification').fadeOut(1000);
+	}
+
+	function showErrorBalance(){
+		$('#error-balance').fadeIn();
+		$('#error-balance').fadeOut(3000);
 	}
 }
 
