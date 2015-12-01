@@ -58,12 +58,12 @@ function compareTo(){
 usernameAvailable.$inject = ['$timeout', '$q', 'listAccount'];
 function usernameAvailable($timeout, $q, listAccount){
 	return {
-    restrict: 'A',
+    restrict: 'AE',
     require: 'ngModel',
     link: function(scope, element, attributes, ngModel) { 
       ngModel.$asyncValidators.usernameExists = function(modelValue) { 
-		console.log(modelValue);
         var valid = true;
+        
         var accounts = listAccount.accounts;
         for(var i=0; i<accounts.length;i++){
         	if(modelValue == accounts[i].username){
@@ -71,7 +71,8 @@ function usernameAvailable($timeout, $q, listAccount){
         		break;
         	}
         }
-        console.log(modelValue);
+        console.log(valid);
+
         var defer = $q.defer();
         $timeout(function(){
           ngModel.$setValidity('usernameExists', valid); 
