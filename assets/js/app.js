@@ -17,4 +17,8 @@ $(document).ready(function(){
       window.location.hash = hash;
     });
   });
-})
+
+  $('.navbar-collapse ul li a').click(function() {
+    $('.navbar-toggle:visible').click();
+});
+}) 
