@@ -24,10 +24,9 @@ angular
 			}
 			);
 	/*console.log(accounts);*/
-	console.log("Dang o trong listAccount");
+	// console.log("Dang o trong listAccount");
 
 	function checkCurrentAccountExist(){
-		console.log("dang check");
 		if (this.currentAccount == null){
 			$location.path('/login');
 			return false;

@@ -10,6 +10,7 @@ function LoginController($scope, $location, listAccount){
 	$scope.currentAccount = null;
 	$scope.logout = logout;
 
+
 	function checkLogin(){
 		$scope.currentAccount = listAccount.currentAccount;
 		return listAccount.isLoggedIn.status;

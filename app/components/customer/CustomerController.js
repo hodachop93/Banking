@@ -8,24 +8,32 @@ CustomerController.$inject = ['$scope', '$location',
 
 function CustomerController($scope, $location, 
 	listTransaction, listAccount){
+
+
 	$scope.loadTransactionHistory = loadTransactionHistory;
 	$scope.withDraw = withDraw;
 	$scope.deposit = deposit;
 	$scope.filterTransaction = filterTransaction;
 	$scope.loadCurrentAccount = loadCurrentAccount;
-	$scope.checkCurrentAccountExist = listAccount.checkCurrentAccountExist;
+	$scope.checkCurrentAccountExist = checkCurrentAccountExist
 	$scope.transfer = transfer;
 	$scope.deleteTransaction = deleteTransaction;
 	
-
+	function checkCurrentAccountExist(){
+		var valid = listAccount.checkCurrentAccountExist();
+		// if (valid){
+		// 	console.log("fade");
+		// 	$('#page-wrapper').fadeOut();
+		// 	$('#page-wrapper').fadeIn(3000);
+		// }
+		return valid;
+	}
 
 	function loadTransactionHistory(){
 		console.log("load transactions");
 		loadCurrentAccount();
 		$scope.accounts = listAccount.accounts;
 		$scope.transactions = listTransaction.transactions;
-		
-
 	}
 
 	function loadCurrentAccount(){

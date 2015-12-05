@@ -1,6 +1,29 @@
-<div class="container" ng-init="loadCurrentAccount()">
+<div ng-init="loadCurrentAccount()">
+	<table class="table table-no-border text-center">
+		<tbody>
+			<tr>
+				<td>Your id account: </td>
+				<td>{{currentAccount.idAccount}}</td>
+			</tr>
+			<tr>
+				<td>Your username: </td>
+				<td>{{currentAccount.username}}</td>
+			</tr>
+			<tr>
+				<td>Your full name: </td>
+				<td>{{currentAccount.fullname}}</td>
+			</tr>
+			<tr>
+				<td>Your balance: </td>
+				<td>{{currentAccount.balance | currency : "$" : 0}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 
-	<div class="row col-sm-7">
+<!-- <div class="text-center" ng-init="loadCurrentAccount()">
+
+	<div class="row">
 		<div class="col-sm-3">
 			Your id account: 
 		</div>
@@ -9,7 +32,7 @@
 		</label></div>
 	</div>
 
-	<div class="row col-sm-7">
+	<div class="row">
 		<div class="col-sm-3">
 			Your username: 
 		</div>
@@ -18,7 +41,7 @@
 		</label></div>
 	</div>
 
-	<div class="row col-sm-7">
+	<div class="row">
 		<div class="col-sm-3">
 			Your full name: 
 		</div>
@@ -27,7 +50,7 @@
 		</label></div>
 	</div>
 	
-	<div class="row col-sm-7">
+	<div class="row">
 		<div class="col-sm-3">
 			Your balance: 
 		</div>
@@ -35,4 +58,4 @@
 			{{currentAccount.balance | currency : "$" : 0}}
 		</label></div>
 	</div>
-</div>
+</div> -->
