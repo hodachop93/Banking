@@ -20,6 +20,7 @@ function CustomerController($scope, $location,
 
 
 	function loadTransactionHistory(){
+		console.log("load transactions");
 		loadCurrentAccount();
 		$scope.accounts = listAccount.accounts;
 		$scope.transactions = listTransaction.transactions;

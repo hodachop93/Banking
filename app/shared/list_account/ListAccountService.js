@@ -1,7 +1,8 @@
 angular
 .module('bankingApp.account', [])
 
-.factory('listAccount', ['$http', '$q', function ($http, $q) {
+.factory('listAccount', ['$http', '$q', '$location', 
+	function ($http, $q, $location) {
 	var accounts = [];
 	var currentAccount = null;
 	var deferredObj = $q.defer();
@@ -26,7 +27,9 @@ angular
 	console.log("Dang o trong listAccount");
 
 	function checkCurrentAccountExist(){
+		console.log("dang check");
 		if (this.currentAccount == null){
+			$location.path('/login');
 			return false;
 		}else{
 			return true;

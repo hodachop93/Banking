@@ -1,32 +1,51 @@
-<div  class="col-sm-4 col-sm-offset-4" >	
-
-	<h2>Login</h2>
-	<div ng-show="error" class="alert alert-danger">{{error}}</div>
-
-	<form name="LoginForm" novalidate ng-submit="login()" role="form">
-		
-		<div class="form-group" ng-class="{'has-error' : LoginForm.username.$dirty && LoginForm.username.$error.required}">
-			<label>Username</label>
-			<input type="text" name="username" class="form-control" ng-model="username" required>
-
-			<div ng-messages="LoginForm.username.$error" class="error">
-				<div ng-message="required">Please enter a value</div>
-			</div>
-		</div>
-
-		<div class="form-group" ng-class="{'has-error' : LoginForm.password.$dirty && LoginForm.password.$error.required}">
-			<label>Password</label>
-			<input type="password" name="password" class="form-control" ng-model="password" required>
-
-			<div ng-messages="LoginForm.username.$error" class="error">
-				<div ng-message="required">Please enter a value</div>
-			</div>
-		</div>
-
-		<div>
-			<input type="submit" class="btn btn-primary" value="Login" ng-disabled="LoginForm.$invalid">
-			<a href="#home" class="btn btn-link">Cancel</a>
-		</div>
-	</form>
+<div id="background-login">
+    <div class="intro-text text-center">
+        <div class="intro-lead-in">Welcome To Hop eBanking!</div>
+        <div class="intro-heading">Money in the best safe</div>
+        <button type="button" class="btn btn-xl"  data-toggle="modal" data-target="#loginModal">Login</button>
+    </div>
 </div>
 
+<div id="loginModal" class="modal fade">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+
+            <div class="modal-body">
+                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+
+                <form name="LoginForm" novalidate role="form">
+
+                    <div class="form-group" ng-class="{'has-error' : LoginForm.username.$dirty && LoginForm.username.$error.required}">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" ng-model="username" required>
+
+                        <div ng-messages="LoginForm.username.$error" class="error">
+                            <div ng-message="required">Please enter a value</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-error' : LoginForm.password.$dirty && LoginForm.password.$error.required}">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" ng-model="password" required>
+
+                        <div ng-messages="LoginForm.password.$error" class="error">
+                            <div ng-message="required">Please enter a value</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Login" ng-disabled="LoginForm.$invalid" ng-click="login()">
+
+                        <a href="#home" class="btn btn-link" data-dismiss="modal">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

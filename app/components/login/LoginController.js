@@ -34,7 +34,7 @@ function LoginController($scope, $location, listAccount){
 					listAccount.currentAccount = accounts[i];
 					listAccount.isLoggedIn.status = true;
 					console.log("login thanh cong");
-					console.log(listAccount.accounts);
+
 					$location.path('/customer/dashboard');
 					return;
 				}else{
