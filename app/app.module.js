@@ -8,13 +8,9 @@ config.$inject = ['$routeProvider'];
 
 function config($routeProvider){
 	$routeProvider
-	.when('/register', {
-		templateUrl: 'app/components/register/RegisterView.html',
-		controller: 'RegisterController'
-	})
-	.when('/login', {
-		templateUrl: 'app/components/login/LoginView.html',
-		controller: 'LoginController'
+	.when('/home', {
+		templateUrl: 'app/components/home/Home.html',
+		controller: ''
 	})
 	.when('/customer/dashboard', {
 		templateUrl: 'app/components/customer/CustomerDashboardView.html',
@@ -28,7 +24,7 @@ function config($routeProvider){
 		templateUrl: 'app/components/customer/CustomerTransferView.html',
 		controller: 'CustomerController'
 	})	
-	.otherwise({ redirectTo: '/login' })	
+	.otherwise({ redirectTo: '/home' })	
 }
 
 

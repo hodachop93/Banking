@@ -76,7 +76,7 @@ function usernameAvailable($timeout, $q, listAccount){
         var defer = $q.defer();
         $timeout(function(){
           ngModel.$setValidity('usernameExists', valid); 
-          defer.resolve();
+          defer.resolve;
         }, 500);
         return defer.promise;
       };

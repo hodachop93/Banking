@@ -176,6 +176,9 @@ body{
 		margin-bottom: 25px;
 	}
 
+.modal.fade .modal-dialog{
+	font-family: 'Roboto Slab', sans-serif;
+}
 @media(min-width:768px){
 	
 	.side-nav{
