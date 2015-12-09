@@ -11,7 +11,7 @@
             <div class="modal-body">
                 <div ng-show="error" class="alert alert-danger">{{error}}</div>
 
-                <form name="LoginForm" novalidate role="form">
+                <form name="LoginForm" novalidate role="form" ng-submit="login()">
 
                     <div class="form-group" ng-class="{'has-error' : LoginForm.username.$dirty && LoginForm.username.$error.required}">
                         <label>Username</label>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div>
-                        <input type="submit" class="btn btn-primary" data-dismiss="modal" value="Login" ng-disabled="LoginForm.$invalid" ng-click="login()">
+                        <input type="submit" class="btn btn-primary" value="Login" ng-disabled="LoginForm.$invalid">
 
                         <a href="#home" class="btn btn-link" data-dismiss="modal">Cancel</a>
                     </div>

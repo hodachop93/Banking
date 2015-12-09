@@ -15,14 +15,21 @@ angular
 				response.data.accounts.forEach(function(account){
 					accounts.push(account);
 				})
-				/*console.log(response);*/
-				deferredObj.resolve(accounts);
+				//console.log(JSON.stringify(response.data.accounts));
+				//console.log(response);
+				// deferredObj.resolve(accounts);
+				deferredObj.resolve(response.data);
+
+
 			},
 			function(response){ //error callback
 				// called asynchronously if an error occurs or server returns response with an error status.
-				console.log(response);
+				// console.log(JSON.stringify(response));
+				deferredObj.reject(response);
 			}
 			);
+
+	console.log(accounts);
 	/*console.log(accounts);*/
 	// console.log("Dang o trong listAccount");
 

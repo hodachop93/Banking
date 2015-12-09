@@ -22,6 +22,8 @@ function RegisterController($scope, $location, listAccount){
 		listAccount.currentAccount = account;
 		listAccount.accounts.push(account);
 		listAccount.isLoggedIn.status = true;
+		$('body').removeClass('modal-open');
+		$(".modal-backdrop").hide();
 		$location.path('/customer/dashboard');
 	}
 }
