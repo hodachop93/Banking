@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content=""> -->
+
+    <title>Banking Management</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="assets/css/app.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- // <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script> -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-messages/angular-messages.min.js"></script>
+    
+</head>
+
+<body ng-app="bankingApp">
+
+
+    <div ng-view></div>
+
+    <!-- Core module AngularJS -->
+    <script src="app/app.module.js"></script>
+
+    <!-- Load assets app.js -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- Load Controllers -->
+    <script type="text/javascript" src="app/components/register/RegisterController.js"></script>
+    <script type="text/javascript" src="app/components/login/LoginController.js"></script>
+    <script type="text/javascript" src="app/components/customer/CustomerController.js"></script>
+
+    <!-- Load Services -->
+    <script type="text/javascript" src="app/shared/list_transaction/ListTransactionService.js"></script>
+    <script type="text/javascript" src="app/shared/list_account/ListAccountService.js"></script>
+
+</body>
+
+</html>

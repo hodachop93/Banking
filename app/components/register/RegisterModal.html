@@ -1,0 +1,70 @@
+<div class="modal fade" id="registerModal" ng-controller="RegisterController">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h3 class="modal-title" id="modal-register-label">Sign up now</h3>
+				<p>Fill in the form below to get instant access:</p>
+			</div>
+
+			<div class="modal-body">
+
+				<div ng-show="error" class="alert alert-danger">{{error}}</div>
+				<form name="RegisterForm" novalidate ng-submit="register(username)">
+					<div class="form-group has-feedback" ng-class="{'has-error' : RegisterForm.username.$dirty && RegisterForm.username.$invalid}">
+						<label>Your username</label>
+						<input type="text" name="username" class="form-control" ng-model="username" required username-available ng-model-options="{ updateOn: 'blur' }">
+
+						<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate form-control-feedback text-danger" ng-if="RegisterForm.username.$pending.usernameExists"></span>
+
+						<div ng-messages="RegisterForm.username.$error" class="error">
+							<div ng-message="required">Your username is required</div>
+							<div ng-message="usernameExists">Username exists already</div>
+						</div>
+						
+					</div>
+
+					<div class="form-group" ng-class="{'has-error' : RegisterForm.fullname.$dirty && RegisterForm.fullname.$invalid}">
+						<label>Your full name</label>
+						<input type="text" name="fullname" class="form-control" ng-model="fullname" required>
+						<div ng-messages="RegisterForm.fullname.$error" class="error">
+							<div ng-message="required">Your full name is required</div>
+						</div>
+					</div>
+
+					<div class="form-group" ng-class="{'has-error' : RegisterForm.password.$dirty && RegisterForm.password.$invalid}">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" ng-model="password" name="password" required>
+
+						<div ng-messages="RegisterForm.password.$error" class="error">
+							<div ng-message="required">Password is required</div>
+						</div>
+					</div>
+
+					<div class="form-group has-feedback" ng-class="{'has-error' : RegisterForm.confirmPassword.$dirty && RegisterForm.confirmPassword.$invalid}">
+						<label>Confirm Password</label>
+						<input type="password" class="form-control" name="confirmPassword" required ng-model="confirmPassword" compare-to="password">
+						<span class="form-control-feedback glyphicon glyphicon-remove text-danger" ng-show="RegisterForm.confirmPassword.$error.compareTo"></span>
+						<span class="form-control-feedback glyphicon glyphicon-ok text-success" ng-show="!RegisterForm.confirmPassword.$error.compareTo && !RegisterForm.confirmPassword.$error.required"></span>
+
+						<div ng-messages="RegisterForm.confirmPassword.$error" class="error">
+							<div ng-message="required">Confirm password is required</div>
+							<div ng-message="compareTo">Confirm paswword must match the password</div>
+						</div>
+
+
+					</div>
+					<div>
+						<a class="btn btn-primary" ng-disabled="RegisterForm.$invalid">Register</a>
+						<a class="btn btn-link" data-dismiss="modal">Cancel</a>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>

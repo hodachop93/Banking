@@ -22,6 +22,8 @@ function RegisterController($scope, $location, listAccount){
 		listAccount.currentAccount = account;
 		listAccount.accounts.push(account);
 		listAccount.isLoggedIn.status = true;
+		$('body').removeClass('modal-open');
+		$(".modal-backdrop").hide();
 		$location.path('/customer/dashboard');
 	}
 }
@@ -76,7 +78,7 @@ function usernameAvailable($timeout, $q, listAccount){
         var defer = $q.defer();
         $timeout(function(){
           ngModel.$setValidity('usernameExists', valid); 
-          defer.resolve();
+          defer.resolve;
         }, 500);
         return defer.promise;
       };
